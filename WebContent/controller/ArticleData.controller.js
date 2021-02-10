@@ -64,16 +64,19 @@ sap.ui.define([
 	    var oProcess = this._oAppModel.getProperty("/ArticleData/SpecialProcess/Current");
 	    if(oProcess && oProcess.selected){
 		oMessage.SpecialProcess = oProcess.id;
-        	this.getOwnerComponent().readMessage(oMessage).then(function(aResult){
-            		if(aResult.length > 0) {
-            		    var sText = aResult[0].Values;
-            		    MessageBox.show(sText, {
-            			icon: MessageBox.Icon.INFORMATION,			
-            			actions: [MessageBox.Action.OK]	});
-            		}
-        		
-        	}.bind(this));
 	    }
+		
+	    this.getOwnerComponent().readMessage(oMessage).then(function(aResult){
+            	if(aResult.length > 0) {
+            	    if (aResult[0].ShowText){
+            		var sText = aResult[0].Values;
+            		MessageBox.show(sText, {
+            		    icon: MessageBox.Icon.INFORMATION,			
+            		    actions: [MessageBox.Action.OK]	});
+            	    }
+            	}
+	    }.bind(this));
+	    
 	},
 	
 	onSpecialProcessListSelectionChange: function (oSelectionChangeEvent) {   

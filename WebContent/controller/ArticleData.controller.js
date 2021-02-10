@@ -1,4 +1,4 @@
-// Version 2.1.0
+// Version 2.2.0 # CMH-5892
 sap.ui.define([
 	"sap/ui/core/mvc/Controller", "sap/ui/core/UIComponent", "de/arvato/GRModul02/libs/Helper", 
 	"sap/m/MessageBox", "sap/m/MessageToast", "de/arvato/GRModul02/libs/formatter"

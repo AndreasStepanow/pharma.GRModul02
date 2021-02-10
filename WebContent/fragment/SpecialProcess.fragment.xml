@@ -4,7 +4,7 @@
 	<Panel expandable="true"
 		headerText="{i18n>SpecialProcess.HeaderText}"
 		expanded="{app>/SpecialProcess/expanded}"
-		visible="{app>/SpecialProcess/visible}">
+		visible="{app>/SpecialProcess/visible}" expand="onExpandSpecialProcessDisplay">
 		<f:Form id="idSpecialProcessDisplay" editable="false">
 			<f:layout>
 				<f:ResponsiveGridLayout />
@@ -22,8 +22,10 @@
 									mode="SingleSelectLeft">
 									<StandardListItem title="{app>description}">
 										<customData>
-											<core:CustomData key="bwlvs" value="{app>bwlvs}"></core:CustomData>
-											<core:CustomData key="spgru" value="{app>spgru}"></core:CustomData>
+											<core:CustomData key="bwlvs"
+												value="{app>bwlvs}"></core:CustomData>
+											<core:CustomData key="spgru"
+												value="{app>spgru}"></core:CustomData>
 										</customData>
 									</StandardListItem>
 								</List>

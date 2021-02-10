@@ -1,7 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m"
 	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form">
-	<Panel expandable="true" expanded="{app>/Header/expanded}" visible="{app>/Header/visible}">
+	<Panel expandable="true" expanded="{app>/Header/expanded}" visible="{app>/Header/visible}"
+		expand="onExpandDefaultHeaderDisplay" id="idDefaultHeaderDisplay">
 		<f:Form id="FormDisplay" editable="false">
 			<f:layout>
 				<f:ResponsiveGridLayout labelSpanXL="3"

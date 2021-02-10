@@ -40,6 +40,10 @@ sap.ui.define([
 
 	},
 	
+	onExpandSpecialProcessDisplay: function(oExpantEvent) {	    
+	    this.getView().byId("idDefaultHeaderDisplay").setExpanded(!oExpantEvent.getSource().getExpanded());	  
+	},
+	
 	loadSpecialProcess: function(){	   
 	    var oMessage = {};
 	    oMessage.Id = '001';

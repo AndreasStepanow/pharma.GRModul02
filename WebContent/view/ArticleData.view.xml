@@ -1,0 +1,208 @@
+<mvc:View
+	controllerName="de.arvato.GRModul02.controller.ArticleData"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc"
+	xmlns:core="sap.ui.core" xmlns:sem="sap.m.semantic"
+	xmlns:libs="de.arvato.GRModul02.libs">
+
+	<sem:FullscreenPage id="idArticleData"
+		title="{i18n>App.Title} / {i18n>ArticelData.Title}"
+		showNavButton="true" navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<Button id="idGEODataDialogButton" icon="sap-icon://measure" press="onGEODataDialog" visible="{app>/ArticleData/MaterialAvailable}"></Button>
+			<Button id="idNawForwardButton" text="{i18n>General.Next}" press="onNavForward"></Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul02.fragment.DefaultHeader" type="XML" />
+			
+		<core:Fragment
+			fragmentName="de.arvato.GRModul02.fragment.SpecialProcess" type="XML" />
+
+		<f:Form id="idFormLoading1" editable="true">
+			<!--f:title> <core:Title text="{i18n>titleCheckLoading1}" /> </f:title -->
+			<f:layout>
+				<!--f:ColumnLayout / -->
+				<f:ResponsiveGridLayout labelSpanXL="4"
+					labelSpanL="12" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+
+						<f:FormElement label="">
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween"
+									class="sapMTBStandard">
+									<items>
+										<Text text="{i18n>ArticleData.Serial}"></Text>
+										<RadioButtonGroup columns="2"
+											select="onSerializationSelect" id="idSerializationGroup">
+											<buttons>
+												<RadioButton id="idRadioSerialYes"
+													text="{i18n>textYes}"
+													selected="{app>/ArticleData/Serial/yes}" />
+												<RadioButton id="idRadioSerialNo"
+													text="{i18n>textNo}"
+													selected="{app>/ArticleData/Serial/no}" />
+											</buttons>
+										</RadioButtonGroup>
+									</items>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+
+						<!--f:FormElement label="">
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween"
+									class="sapMTBStandard">
+									<items>
+										<Text text="{i18n>ArticleData.Verify}"></Text>
+										<RadioButtonGroup columns="2"
+											id="idVerificationGroup">
+											<buttons>
+												<RadioButton id="idRadioVerifyYes"
+													text="{i18n>textYes}"
+													selected="{app>/ArticleData/Verify/yes}" />
+												<RadioButton id="idRadioVerifyNo"
+													text="{i18n>textNo}"
+													selected="{app>/ArticleData/Verify/no}" />
+											</buttons>
+										</RadioButtonGroup>
+									</items>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement-->
+
+						<!--f:FormElement label=""> <f:fields> <FlexBox justifyContent="SpaceBetween" 
+							class="sapMTBStandard"> <items> <Text text="{i18n>ArticleData.Accordance}"></Text> 
+							<RadioButtonGroup columns="2" select="onAccordanceSelect" id="idAccordanceGroup"> 
+							<buttons> <RadioButton id="idRadioAccordanceYes" text="{i18n>textYes}" selected="{app>/ArticleData/Accordance/yes}"> 
+							<layoutData> <FlexItemData order="1" /> </layoutData> </RadioButton> <RadioButton 
+							id="idRadioAccordanceNo" text="{i18n>textNo}" selected="{app>/ArticleData/Accordance/no}"> 
+							<layoutData> <FlexItemData order="2" /> </layoutData> </RadioButton> </buttons> 
+							</RadioButtonGroup> </items> </FlexBox> </f:fields> </f:FormElement -->
+
+						<!--f:FormElement label=""> <f:fields> <FlexBox justifyContent="SpaceBetween" 
+							class="sapMTBStandard"> <items> <Text text="{i18n>ArticleData.GeodataCrct}"></Text> 
+							<RadioButtonGroup columns="2" select="onGeodataCrctSelect" id="idGeodataCrctGroup"> 
+							<buttons> <RadioButton id="idRadioGeodataCrctYes" text="{i18n>textYes}" selected="{app>/ArticleData/GeodataCrct/yes}" 
+							/> <RadioButton id="idRadioGeodataCrctNo" text="{i18n>textNo}" selected="{app>/ArticleData/GeodataCrct/no}" 
+							/> </buttons> </RadioButtonGroup> </items> </FlexBox> </f:fields> </f:FormElement -->
+
+						<f:FormElement label="{i18n>ArticelData.Number}">
+							<f:fields>
+								<FlexBox>
+									<items>
+										<Input width="100%" submit="onArticleNumberSubmit"
+											value="{ path: 'app>/ArticleData/Number', 
+													type : 'sap.ui.model.type.String',
+													constraints: { 
+													 	minLength: 1
+													}}"
+											id="idArticleNumber"
+											visible="{=${app>/ArticleData/NumberListVisible} === false}">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+
+										<ComboBox width="100%"
+											selectionChange="onArticleNumberListSelectionChange"
+											items="{ path: 'app>/ArticleData/NumberList' }"
+											id="idArticleNumberList"
+											visible="{app>/ArticleData/NumberListVisible}">
+
+											<core:Item key="{app>Number}" text="{app>Number}" />
+
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</ComboBox>
+
+										<libs:ScanButton id="idArticleScanButton"
+											dialogTitle="{i18n>General.ScanArtikel}"
+											dialogIcon="sap-icon://visits"
+											dialogAbortText="{i18n>General.AbortButton}"
+											inputSuccess="onArtikelInputSuccess"></libs:ScanButton>
+									</items>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+
+						<!--f:FormElement label="{i18n>ArticelData.NumberList}"> <f:fields> 
+							<FlexBox> <items> <ComboBox selectionChange="onArticleNumberListSelectionChange" 
+							items="{ path: 'app>/ArticleData/NumberList' }" id="idArticleNumberList"> 
+							<core:Item key="{app>Number}" text="{app>Number}" /> <layoutData> <FlexItemData 
+							growFactor="1" /> </layoutData> </ComboBox> <Label></Label> </items> </FlexBox> 
+							</f:fields> </f:FormElement -->
+
+						<f:FormElement label="{i18n>ArticelData.Name}">
+							<f:fields>
+								<FlexBox>
+									<items>
+										<Input value="{app>/ArticleData/Name}"
+											id="idArticleName" submit="onArticleNameSubmit"
+											editable="{= ${app>/ArticleData/MaterialAvailable} === false}">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+									</items>
+									<Button icon="sap-icon://add-photo"
+										press="onArticlePhotoButtonPress">
+									</Button>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement
+							label="{i18n>ArticleData.BatchNumber}">
+							<f:fields>
+								<Input
+									value="{ path: 'app>/ArticleData/BatchNumber', 
+												type : 'sap.ui.model.type.String'}"
+									id="idBatchNumber" submit="onBatchNumberSubmit"
+									editable="{= ${app>/ArticleData/BatchObligation} === true &amp;&amp; ${app>/ArticleData/BatchScanned} === false }"></Input>
+							</f:fields>
+						</f:FormElement>
+
+
+						<f:FormElement label="{i18n>ArticleData.ExpiryDate}">
+							<f:fields>
+								<DatePicker id="idExpiryDate"
+									editable="{= ${app>/ArticleData/BatchAvailable} === false}"
+									change="onExpiryDateChange"
+									value="{ path : 'app>/ArticleData/ExpiryDate', 
+									         type : 'sap.ui.model.type.Date', 
+											formatOptions: { 
+												source: { pattern: 'yyyy-MM-ddTHH:mm:ss' }
+												}}"
+									valueFormat="yyyy-MM-dd" displayFormat="long" />
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>textOthers}">
+							<f:fields>
+								<Input maxLength="{const>/LENGTH_OF_COMMENTS}" value="{app>/ArticleData/Others}" id="idOthers"
+									submit="onOthersSubmit"></Input>
+							</f:fields>
+						</f:FormElement>
+
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul02.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>

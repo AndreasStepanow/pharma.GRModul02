@@ -1,0 +1,116 @@
+<mvc:View
+	controllerName="de.arvato.GRModul02.controller.Confirmation"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc"
+	xmlns:core="sap.ui.core" xmlns:sem="sap.m.semantic">
+
+	<sem:FullscreenPage id="idConfirmation"
+		title="{i18n>App.Description} / {i18n>Confirmation.Title}"
+		showNavButton="true" navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<Button id="idConfirmNavButton" icon="sap-icon://navigation-right-arrow"
+				press="onNavForward"></Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul02.fragment.DefaultHeader" type="XML" />
+
+		<f:Form id="idConfirmationForm" editable="true"
+			class="sapUiTinyMarginBegin">
+
+			<f:layout>
+
+				<f:ResponsiveGridLayout labelSpanXL="4"
+					labelSpanL="12" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween">
+									<items>
+										<Text text="{i18n>Confirmation.ArticleData}" />
+										<RadioButtonGroup id="idArticleDataGroup" columns="2">
+											<buttons>
+												<RadioButton id="idRadio01"
+													text="{i18n>textYes}"
+													selected="{app>/Confirmation/ArtikelData/selected}" />
+												<RadioButton id="idRadio02" text="{i18n>textNo}"
+													selected="{= ${app>/Confirmation/ArtikelData/selected} === false}" />
+											</buttons>
+										</RadioButtonGroup>
+
+									</items>
+								</FlexBox>
+								<!--Switch customTextOn="Ja" customTextOff="Nein" state="{local>/GoodsReceipt/ExistCmr/selected}"></Switch -->
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween">
+									<items>
+										<!--Switch customTextOn="Ja" customTextOff="Nein" change="onTempPrintoutSwitchCange" 
+											state="{local>/GoodsReceipt/ExistTempPrint/selected}"></Switch -->
+										<Text text="{i18n>Confirmation.GEOData}" />
+										<RadioButtonGroup columns="2"
+											id="idGEODataGroup">
+											<buttons>
+												<RadioButton id="idRadio03"
+													text="{i18n>textYes}"
+													selected="{app>/Confirmation/GEOData/selected}" />
+												<RadioButton id="idRadio04" text="{i18n>textNo}"
+													selected="{= ${app>/Confirmation/GEOData/selected} === false}" />
+											</buttons>
+										</RadioButtonGroup>
+
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween">
+									<items>
+										<!--Switch customTextOn="Ja" customTextOff="Nein" change="onSerialNumberDialogOpen" 
+											state="{local>/GoodsReceipt/ExistTLog/selected}"></Switch -->
+										<Text text="{i18n>Confirmation.Accordance}" />
+										<RadioButtonGroup columns="2"
+											id="idAccordanceGroup">
+											<buttons>
+												<RadioButton id="idRadio05"
+													text="{i18n>textYes}"
+													selected="{app>/Confirmation/Accordance/selected}" />
+												<RadioButton id="idRadio06" text="{i18n>textNo}"
+													selected="{= ${app>/Confirmation/Accordance/selected} === false}" />
+											</buttons>
+										</RadioButtonGroup>
+
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+					</f:formElements>
+				</f:FormContainer>
+
+			</f:formContainers>
+		</f:Form>
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul02.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>

@@ -1,0 +1,112 @@
+<mvc:View controllerName="de.arvato.GRModul02.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc"
+	xmlns:core="sap.ui.core" xmlns:sem="sap.m.semantic"
+	xmlns:libs="de.arvato.GRModul02.libs">
+
+	<sem:FullscreenPage id="idMain"
+		title="{i18n>App.Title} / {i18n>Main.Title}"
+		navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<Button icon="sap-icon://activate" press="onPalletizingClose"></Button>
+			<Button text="{i18n>General.Start}" id="idNavForwardButton"
+				press="onNavForward"></Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul02.fragment.DefaultHeader" type="XML" />
+
+		<f:Form id="idFormLoading1" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4"
+					labelSpanL="4" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+
+						<!--f:FormElement label="{i18n>General.Employee}"> <f:fields> <FlexBox> 
+							<items> <Input value="{app>/Employee/Name}" editable="false"> <layoutData> 
+							<FlexItemData growFactor="1" /> </layoutData> </Input> <ndc:BarcodeScannerButton 
+							scanSuccess="onEmployeeBarcodeScanSuccess"> </ndc:BarcodeScannerButton> </items> 
+							</FlexBox> </f:fields> </f:FormElement -->
+
+						<f:FormElement>
+							<f:fields>
+								<HBox>
+									<!--Button icon="sap-icon://document" press="onNewButtonPress" width="3rem"></Button -->
+									<!--Button icon="sap-icon://delete" press="onModeChangeButtonPress" 
+										width="3rem"></Button -->
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+
+						<!--f:FormElement label="{i18n>Main.CMRReference}"> <f:fields> <ComboBox 
+							id="idCheckComboBox" selectionChange="onCheckComboBoxSelectionChange" items="{erp>/CheckSet}"> 
+							<core:Item key="{erp>CmrRef}" text="{erp>CmrRef}" /> </ComboBox> </f:fields> 
+							</f:FormElement -->
+							
+							<!-- filters:[{path: 'Check/State', operator: 'EQ', value1:'20'}], -->
+
+						<f:FormElement label="{i18n>Main.RoughGR}">
+							<f:fields>
+								<FlexBox>
+									<items>
+									
+										<ComboBox id="idRoughGRComboBox" width="100%"
+											items="{path: 'app>/RoughGRSet',											
+													sorter: { path: 'Zgweno', descending: true }}"
+											selectionChange="onRoughGRComboBoxSelectionChange">
+
+											<core:Item key="{app>Zgweno}"
+												text="{app>Zgweno} {app>Zbetrst} {app>Mandt} {path:'app>Erdat',type:'sap.ui.model.type.Date'} {path:'app>Erzet',type:'sap.ui.model.odata.type.Time'}" />
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</ComboBox>
+										
+									
+										<!-- ComboBox id="idRoughGRComboBox" width="100%"
+											items="{path: 'erp>/RoughGRSet',											
+													sorter: { path: 'Zgweno', descending: true },
+													filters: [{path:'Zupdate',operator:'EQ',value1:'2'}],
+													parameters: { expand : 'Check' }}"
+											selectionChange="onRoughGRComboBoxSelectionChange">
+
+											<core:Item key="{erp>Zgweno}"
+												text="{erp>Zgweno} {erp>Zbetrst} {erp>Mandt} {path:'erp>Erdat',type:'sap.ui.model.type.Date'} {path:'erp>Erzet',type:'sap.ui.model.odata.type.Time'}" />
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</ComboBox-->
+
+										<libs:ScanButton id="idRoughGRScanButton"
+											dialogTitle="{i18n>General.ScanRoughGR}"
+											dialogIcon="sap-icon://visits"
+											dialogAbortText="{i18n>General.AbortButton}"
+											inputSuccess="onRoughGRInputSuccess"></libs:ScanButton>
+
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul02.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>

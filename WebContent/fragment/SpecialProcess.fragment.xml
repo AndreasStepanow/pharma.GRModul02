@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Panel expandable="true"
+		headerText="{i18n>SpecialProcess.HeaderText}"
+		expanded="{app>/SpecialProcess/expanded}"
+		visible="{app>/SpecialProcess/visible}">
+		<f:Form id="idSpecialProcessDisplay" editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<!--CheckBox visible="{app>/SpecialProcess/Sample/visible}" text="{i18n>SpecialProcess.Sample}"/> 
+									<CheckBox visible="{app>/SpecialProcess/USADelivery/visible}" text="{i18n>SpecialProcess.USADelivery}"/ -->
+								<List id="idSpecialProcessList"
+									items="{app>/ArticleData/SpecialProcess/List}"
+									selectionChange="onSpecialProcessListSelectionChange"
+									mode="SingleSelectLeft">
+									<StandardListItem title="{app>description}">
+										<customData>
+											<core:CustomData key="bwlvs" value="{app>bwlvs}"></core:CustomData>
+											<core:CustomData key="spgru" value="{app>spgru}"></core:CustomData>
+										</customData>
+									</StandardListItem>
+								</List>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</Panel>
+</core:FragmentDefinition>

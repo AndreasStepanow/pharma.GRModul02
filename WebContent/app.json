@@ -1,0 +1,152 @@
+{	
+	"Test": "",
+	"Printer":"",	
+	"Header": {
+		"expanded": true,
+		"visible": true
+	},
+	"SpecialProcess":{
+		"expanded": false,
+		"visible": false,
+		"Sample":{
+			"visible": true
+		},
+		"USADelivery":{
+			"visible": true
+		}
+	},	
+	"Employee": {
+		"ID": "",
+		"User": "",
+		"Name": ""
+	},
+	"Lgnum": "",
+	"CmrRef": "",
+	"CheckId": "",
+	"PoNumber": "",
+	"Zgweno": "",
+	"Zbetrst": "",
+	"Client": "",
+	"CurrentDate": "",
+	"GEOData": {
+		"captured": false,
+		"current": "",
+		"showGeodataCrctMessage": false	
+	},
+	"ArticleData": {
+		"SpecialProcess": {
+			"List": [],
+			"Current": {}
+		},
+		"Completely": false,
+		"NumberListVisible": false,
+		"NumberList": [],
+		"ItemId": "",
+		"Number": "",
+		"MaterialAvailable": false,
+		"StockAvailable": false,
+		"Name": "",
+		"BatchObligation": false,
+		"BatchScanned": false,
+		"BatchNumber": "",		
+		"BatchAvailable": false,
+		"ExpiryDate": "",
+		"Others": "",
+		"Serial": {
+			"yes": false,
+			"no": false					
+		},
+		"Verify": {
+			"yes": false,
+			"no": false		
+		},
+		"Accordance": {
+			"yes": false,
+			"no": false		
+		},
+		"GeodataCrct": {
+			"yes": false,
+			"no": false		
+		},
+		"GEOData": [
+			{
+				"DeliveryUnit": "ST",
+				"Length": "",
+				"Width": "",
+				"Height": "",
+				"UOM": "MM",
+				"Weight": "",
+				"WeightUnit": "G",
+				"pressed": false
+			},
+			{
+				"DeliveryUnit": "ALH",
+				"Length": "",
+				"Width": "",
+				"Height": "",
+				"UOM": "MM",
+				"Weight": "",
+				"WeightUnit": "G",
+				"pressed": false
+			},
+			{
+				"DeliveryUnit": "AUH",
+				"Length": "",
+				"Width": "",
+				"Height": "",
+				"UOM": "MM",
+				"Weight": "",
+				"WeightUnit": "G",
+				"pressed": false
+			}
+		],
+		"Pallet": {
+			"Completely": false,
+			"Mixed": false
+		},
+		"Pallets": []
+	},
+	"Confirmation": {
+		"ArtikelData": {
+			
+		},
+		"GEOData": {
+			
+		},
+		"Accordance": {
+			
+		}
+	},
+	"Owerview": {
+		"List": []
+	},
+	"Others": {
+		"Date": "",
+		"Name": "",
+		"VariableData": {
+			"selected": true
+		},
+		"ArticleGeoData": {
+			"selected": true
+		}
+	},
+	"GoodsReceipt": {
+		"MaterialDocument": ""
+	},
+	"Check": {
+		"State": {
+			"Open": "00",
+			"PreEntryInWork": "10",
+			"PreEntryCompleted": "20",
+			"PalletizingInWork": "30",
+			"PalletizingCompleted": "40",
+			"Canceled": "41"
+		}
+	},
+	"QMCheckSemanticObjekt": "ZphaGRModul10Sem",
+	"QMCheckAction": "change",
+	"ShowMessageForNextProcess": false,
+	"SUTypes":[
+		{ "Letyp": "E03" }
+	]
+}

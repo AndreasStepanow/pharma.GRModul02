@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharma: M02 - Palettierung</title>
+<!-- Eclipse and Github meets MS Teams -->
+<script id="sap-ui-bootstrap" src="resources/sap-ui-core.js"
+	data-sap-ui-theme="sap_bluecrystal"
+	data-sap-ui-resourceroots='{"de.arvato.GRModul02": "./", "openui5.camera":"./thirdparty/openui5/camera"}'
+	data-sap-ui-compatVersion="edge" data-sap-ui-libs="sap.m"
+	data-sap-ui-preload="auto" data-sap-ui-async="true"
+	data-sap-ui-frameOptions="trusted"
+	data-sap-ui-xx-bindingSyntax="complex">
+    
+</script>
+
+<script>
+
+	sap.ui.getCore().loadLibrary("openui5.camera")
+    sap.ui.getCore().attachInit(function() {	
+	
+	new sap.m.Shell({
+	    app : new sap.ui.core.ComponentContainer({
+		height : "100%",
+		name : "de.arvato.GRModul02"
+	    })
+	}).placeAt("content");
+    });
+</script>
+
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>

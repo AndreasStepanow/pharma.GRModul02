@@ -1,0 +1,132 @@
+<mvc:View
+	controllerName="de.arvato.GRModul02.controller.GEOData"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns:sem="sap.m.semantic">
+
+	<sem:FullscreenPage id="idGEOData"
+		title="{i18n>App.Title} / {i18n>GEOData.Title}" showNavButton="true"
+		navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<Button icon="sap-icon://navigation-right-arrow"
+				press="onNavForward"></Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul02.fragment.DefaultHeader" type="XML" />
+
+		<f:Form id="idFormLoading1" editable="true">
+			<!--f:title> <core:Title text="{i18n>titleCheckLoading1}" /> </f:title -->
+			<f:layout>
+				<!--f:ColumnLayout / -->
+				<f:ResponsiveGridLayout labelSpanXL="4"
+					labelSpanL="12" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+
+						<f:FormElement label="">
+							<f:fields>
+
+								<!--ComboBox id="idDeliveryUnit" items="{app>/ArticleData/GEOData}" 
+									selectionChange="onGEODataSelectionChange"> <core:Item key="{app>DeliveryUnit}" 
+									text="{app>DeliveryUnit}" /> </ComboBox -->
+								<FlexBox items="{app>/ArticleData/GEOData}">
+									<ToggleButton text="{app>DeliveryUnit}" pressed="{app>pressed}"
+										press="onGEODataButtonPress" width="100%">
+										<layoutData>
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</ToggleButton>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>ArticleData.Length}">
+							<f:fields>
+
+								<FlexBox>
+									<items>
+										<Input id="idLengthInput" value="{app>Length}">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+										<Button text="{app>UOM}" width="4rem"></Button>
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>ArticleData.Width}">
+							<f:fields>
+
+								<FlexBox>
+									<items>
+										<Input id="idWidthInput" value="{app>Width}">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+										<Button text="{app>UOM}" width="4rem"></Button>
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>ArticleData.Height}">
+							<f:fields>
+
+								<FlexBox>
+									<items>
+										<Input id="idHeightInput" value="{app>Height}">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+										<Button text="{app>UOM}" width="4rem"></Button>
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+
+						<f:FormElement label="{i18n>ArticleData.Weight}">
+							<f:fields>
+								<FlexBox>
+									<items>
+										<Input id="idWeidhtInput" value="{app>Weight}">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+										<Button text="{app>WeightUnit}" width="4rem"></Button>
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul02.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>

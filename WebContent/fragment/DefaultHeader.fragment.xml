@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Panel expandable="true" expanded="{app>/Header/expanded}" visible="{app>/Header/visible}">
+		<f:Form id="FormDisplay" editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="3"
+					labelSpanL="3" labelSpanM="3" labelSpanS="4"
+					adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+					emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+
+						<!--f:FormElement label="{i18n>General.Employee}">
+							<f:fields>
+								<Text id="il2" 
+									text="{app>/Employee/Name}" width="100%"/>
+							</f:fields>
+						</f:FormElement-->
+						
+						<f:FormElement label="{i18n>Main.CMR}">
+							<f:fields>
+								<Text id="il2" 
+									text="{app>/Client}-{app>/CmrRef}" width="100%"/>
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>General.ArticleBatch}">
+							<f:fields>
+								<Text id="il5" 
+									text="{app>/ArticleData/Number} / {app>/ArticleData/BatchNumber}" width="100%" />
+							</f:fields>
+						</f:FormElement>
+
+						<!--f:FormElement label="{i18n>General.Batch}">
+							<f:fields>
+
+								<Text id="il6"
+									text="{app>/ArticleData/Batch}" width="100%"/>
+							</f:fields>
+						</f:FormElement-->
+
+
+
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</Panel>
+</core:FragmentDefinition>

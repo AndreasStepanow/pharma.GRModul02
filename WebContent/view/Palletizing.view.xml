@@ -1,0 +1,111 @@
+<mvc:View
+	controllerName="de.arvato.GRModul02.controller.Palletizing"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:m="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc" xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core" xmlns:sem="sap.m.semantic">
+
+	<sem:FullscreenPage id="idPalletizing"
+		title="{i18n>App.Title} / {i18n>Palletizing.Title}"
+		showNavButton="true" navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<m:Button text="{i18n>General.Finish}"
+				press="onNavForward"></m:Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul02.fragment.DefaultHeader" type="XML" />
+
+		<Table id="idPalletTable"
+			firstVisibleRowChanged="onRowSelectionChange"
+			rows="{app>/ArticleData/Pallets}" visibleRowCount="7"
+			selectionMode="Single">
+
+			<toolbar>
+				<m:Toolbar>
+					<!--m:Title text="{i18n>Palletizing.Pallets}" / -->
+					<!--m:Button text="{i18n>Palletizing.AddNew}"
+						press="onAddNewPallettPress" /-->
+					<!--m:Button text="{i18n>Palletizing.Delete}"
+						press="onDeletePallettPress" /-->
+					<!--m:CheckBox text="{i18n>Palletizing.Mixed}"
+						selected="{app>/ArticleData/Pallet/Mixed}" /-->
+				</m:Toolbar>
+			</toolbar>
+
+			<columns>
+
+				<Column visible="false">
+					<!--m:Label text="{i18n>Palletizing.Number}" / -->
+					<template>
+						<m:Text text="{app>Number}" />
+					</template>
+				</Column>
+
+				<Column>
+					<m:Label text="{i18n>Palletizing.StorageUnitType}" />
+					<template>
+						<!-- m:ComboBox id="idStorageUnitTypeComboBox" 
+							items="{path: 'app>/SUTypes', templateShareable:false}"> 
+							<core:Item key="{app>Letyp}" text="{app>Letyp}"/>
+						</m:ComboBox-->
+
+						<m:ComboBox id="idStorageUnitTypeComboBox"
+							items="{path: 'app>/SUTypes', templateShareable:false}"
+							selectionChange="onSUTComboBoxSelectionChange">							
+							<core:Item key="{app>Letyp}" text="{app>Letyp} - {app>Letyt}" />
+						</m:ComboBox>
+
+						<!--m:ComboBox id="idStorageUnitTypeComboBox" selectionChange="onSUTComboBoxSelectionChange"> 
+							</m:ComboBox -->
+					</template>
+				</Column>
+
+				<Column>
+					<m:Label text="{i18n>Palletizing.Amount}" />
+					<template>
+						<m:Input value="{app>Amount}" type="Number"/>
+					</template>
+				</Column>
+
+				<Column visible="false">
+					<m:Label text="{i18n>Palletizing.Count}" />
+					<template>
+						<m:Input
+							value="{path: 'app>Count', type: 'sap.ui.model.odata.type.Byte'}"
+							submit="onSubmitCountInput" />
+					</template>
+				</Column>
+
+				<Column>
+					<m:Label text="{i18n>Palletizing.Fracture}" />
+					<template>
+						<m:CheckBox selected="{app>Bruch}" select="onFractureCheckBox" enabled="{app>Enabled}"/>
+					</template>
+				</Column>
+
+			</columns>
+		</Table>
+		
+		<!--m:Button text="Go ..." press="onSemanticObject">
+			<m:customData>
+				<core:CustomData key="SemanticObject" value="ZphaGRModul10Sem"> </core:CustomData>
+				<core:CustomData key="action" value="change"></core:CustomData> 
+			</m:customData> 
+		</m:Button-->
+
+		<!--f:Form id="idFormPalletizing" editable="true"> <f:layout> <f:ResponsiveGridLayout 
+			labelSpanXL="4" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="true" 
+			emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" 
+			columnsL="1" columnsM="1" singleContainerFullSize="false" /> </f:layout> 
+			<f:formContainers> <f:FormContainer> <f:formElements> </f:formElements> </f:FormContainer> 
+			</f:formContainers> </f:Form -->
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul02.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>

@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:ndc="sap.ndc"
+	xmlns:libs="de.arvato.GRModul02.libs">
+
+	<!--Text text="{app>/Employee/Name} ({app>/Employee/Lgnum})"></Text -->
+	<Text text="{app>/Employee/Name}"></Text>
+
+	<ToolbarSeparator></ToolbarSeparator>
+	<core:Icon src="sap-icon://print"></core:Icon>
+	<Label text="{app>/Printer}"></Label>
+	<ToolbarSpacer />
+
+	<Button icon="sap-icon://alert" text="{= ${message>/}.length }"
+		visible="{= ${message>/}.length > 0 }" type="Emphasized"
+		press="onMessagePopoverPress" />
+
+	<Button press="onGoToSemanticObject" icon="sap-icon://home">
+		<customData>
+			<core:CustomData key="SemanticObject" value="#"></core:CustomData>
+		</customData>
+	</Button>
+
+	<libs:ScanButton id="idScanButton" inputType="Password"
+		dialogTitle="{i18n>General.ScanUserIdent}"
+		dialogIcon="sap-icon://visits"
+		dialogAbortText="{i18n>General.AbortButton}"
+		inputSuccess="onEmployeeInputSuccess"></libs:ScanButton>
+
+	<libs:ScanButton visible="false" id="idPrintButton"
+		dialogTitle="{i18n>General.ScanPrinter}"
+		dialogIcon="sap-icon://it-system"
+		dialogAbortText="{i18n>General.AbortButton}"
+		inputSuccess="onPrinterInputSuccess"></libs:ScanButton>
+
+
+	<!--ndc:BarcodeScannerButton provideFallback="true" scanSuccess="onEmployeeBarcodeScanSuccess"></ndc:BarcodeScannerButton -->
+
+	<!--Button press="onGoToSemanticObject" tooltip="Home" icon="sap-icon://open-command-field"> 
+		<customData> <core:CustomData key="SemanticObject" value="ZphaGRModul03Sem"></core:CustomData> 
+		<core:CustomData key="action" value="display"></core:CustomData> </customData> 
+		</Button -->
+
+
+</core:FragmentDefinition>

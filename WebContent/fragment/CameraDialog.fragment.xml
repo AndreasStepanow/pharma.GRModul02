@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:ndc="sap.ndc" xmlns:l="sap.ui.layout" xmlns:libs="de.arvato.GRModul02.libs"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form">
+
+	<Dialog title="{i18n>CameraDialog.Title}" stretch="true">
+		<content>
+			<libs:Camera id="idCamera" width="400" height="400"
+			snapshot="onCameraSnapshot" />
+		</content>
+
+		<beginButton>
+			<Button id="idCameraAcceptButton" icon="sap-icon://circle-task"
+				press="onCameraDialogAccept" />
+		</beginButton>
+
+		<endButton>
+			<Button id="idCameraAbortButton" icon="sap-icon://decline"
+			press="onCameraDialogAbort"/>
+		</endButton>
+
+	</Dialog>
+</core:FragmentDefinition>
+		

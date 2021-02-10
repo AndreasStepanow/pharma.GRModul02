@@ -1,0 +1,179 @@
+{
+	"_version": "1.12.1",
+	"sap.app": {
+		"id": "de.arvato.GRModul02",
+		"type": "application",
+		"i18n": "i18n/i18n.properties", 
+		"applicationVersion": {
+			"version": "2.0.0"
+		},
+		"title": "{{App.Title}}",
+		"description": "{{App.Description}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.38.11"
+		},
+		"dataSources": {
+			"app_alias": {
+				"uri": "app.json",
+				"type": "JSON"
+			},
+			"ZPHA_GR_DEFAULT_SRV": {
+				"uri": "proxy/https/gtyext.arvato-scm.net/sap/opu/odata/sap/ZPHA_GR_DEFAULT_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZPHA_GR_DEFAULT_SRV/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "de.arvato.GRModul02.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "App"
+		},
+		
+		"dependencies": {
+			"minUI5Version": "1.60.1",
+			"libs": {
+				"sap.ui.layout": {
+					
+				},
+				"sap.ui.core": {
+					
+				},
+				"sap.m": {
+					
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"erp": {
+				"dataSource": "ZPHA_GR_DEFAULT_SRV",
+				"preload": true
+			},
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "de.arvato.GRModul02.i18n.i18n"
+				}
+			},
+			"app": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "app_alias"
+			}
+		},		
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "de.arvato.GRModul02.view",
+				"clearTarget": "false",
+				"controlAggregation": "pages",
+				"controlId": "app"		
+			},
+			"routes": [
+				{
+					"name": "RouteMain",
+					"pattern": "",
+					"target": "TargetMain",
+					"targetControl": "app"
+				},
+				{
+					"pattern": "pArticleData/{checkId}",
+					"name": "RouteArticleData",
+					"target": "TargetArticleData",
+					"targetControl": "app"
+				},
+				{
+					"pattern": "pPalletizing/{itemId}",
+					"name": "RoutePalletizing",
+					"target": "TargetPalletizing",
+					"targetControl": "app"
+				},
+				{
+					"pattern": "pGEOData",
+					"name": "RouteGEOData",
+					"target": "TargetGEOData",
+					"targetControl": "app"
+				},
+				{
+					"pattern": "pConfirmation",
+					"name": "RouteConfirmation",
+					"target": "TargetConfirmation",
+					"targetControl": "app"
+				}
+			],
+			"targets": {
+				"TargetMain": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "idMain",
+					"viewName": "Main",
+					"viewLevel": 1
+				},
+				"TargetArticleData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewId": "idArticeldata",
+					"viewName": "ArticleData",
+					"viewLevel": 1
+				},
+				"TargetPalletizing": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewId": "idPalletizing",
+					"viewName": "Palletizing",
+					"viewLevel": 1
+				},
+				"TargetGEOData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewId": "idGEOData",
+					"viewName": "GEOData",
+					"viewLevel": 1
+				},
+				"TargetConfirmation": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewId": "idConfirmation",
+					"viewName": "Confirmation",
+					"viewLevel": 1
+				}
+			}
+		}
+	}
+}

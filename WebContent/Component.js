@@ -67,6 +67,15 @@ sap.ui.define([
         		    aFilters.push(oClientFilter);
         		}
         		
+        		if (oMessage.Zbetrst){
+        		    var oZbetrstFilter = new sap.ui.model.Filter({
+                		path : "f_Zbetrst",
+                		operator : sap.ui.model.FilterOperator.EQ,
+                		value1 : oMessage.Zbetrst
+        		    });
+        		    aFilters.push(oZbetrstFilter);
+        		}
+        		
         		if (oMessage.Material){
         		    var oMaterialFilter = new sap.ui.model.Filter({
             		    	path : "f_Material",

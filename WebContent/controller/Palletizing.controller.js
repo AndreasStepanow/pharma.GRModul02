@@ -318,6 +318,25 @@ sap.ui.define([
     		    
     		},
     		
+    		loadMFractureRelatedProcess: function(){	   
+    		    var oMessage = {};
+    		    oMessage.Id = '003';
+    		    oMessage.Client = this._oAppModel.getProperty("/Client");
+    		    oMessage.Zbetrst = this._oAppModel.getProperty("/Zbetrst");
+    		    oMessage.Material = this._oAppModel.getProperty("/ArticleData/Number");
+    			
+    		    this.getOwnerComponent().readMessage(oMessage).then(function(aResult){
+    	            	if(aResult.length > 0) {
+    	            	    if (aResult[0].ShowText){
+    	            		var sText = aResult[0].Values;
+    	            		MessageBox.show(sText, {
+    	            		    icon: MessageBox.Icon.INFORMATION,			
+    	            		    actions: [MessageBox.Action.OK]	});
+    	            	    }
+    	            	}
+    		    }.bind(this));    		    
+    		},
+    		
     		onFractureCheckBox: function(oEvent) {
     		    var bSelected = oEvent.getParameter("selected");
     		    var oRow = oEvent.getSource().getParent();
@@ -326,8 +345,10 @@ sap.ui.define([
     		    	this.addPallet(false);    		    	
     		    	var oRow1 = oTable.getRows()[1];
     		    	if(oRow1){
-    		    		oRow1.getCells()[0].setSelectedKey("");
+    		    	    oRow1.getCells()[0].setSelectedKey("");
     		    	}
+    		    	
+    		    	this.loadMFractureRelatedProcess();    		      
     		    } else {
     		    	
     		    	var oPallet = oRow.getBindingContext("app").getObject();
@@ -344,7 +365,7 @@ sap.ui.define([
     		    	
     		    }
     		},
-    		
+    		    		    		
     		addPallet: function( bEnabled ) {
     		    
     		    var oData = this._oAppModel.getData();       		  

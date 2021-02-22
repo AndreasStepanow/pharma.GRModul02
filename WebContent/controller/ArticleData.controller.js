@@ -18,13 +18,15 @@ sap.ui.define([
 	    
 	    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 	    oRouter.getRoute("RouteArticleData").attachMatched(this._onArticleDataObjectMatched, this);
+	    
+	    this._MessageIsDisplayed = false;
 
 	    this.getView().onAfterRendering = function() {
 
 		var oArtikeNummer = this.getView().byId("idArticleNumber");
 		oArtikeNummer.addEventDelegate({
 		    onfocusout : function() {
-		    	this.loadArticledata();		
+		    	this.loadArticledata();	
 		    	
 		    }.bind(this)
 		});
@@ -40,11 +42,16 @@ sap.ui.define([
 
 	},
 	
+	onPressSpecialProcessItem: function(oSpecialProcessItemEvent) {
+	    debugger;
+	},
+	
 	onExpandSpecialProcessDisplay: function(oExpantEvent) {	    
 	    this.getView().byId("idDefaultHeaderDisplay").setExpanded(!oExpantEvent.getSource().getExpanded());	  
 	},
 	
-	loadSpecialProcess: function(){	   
+	loadSpecialProcess: function(){	
+	    
 	    var oMessage = {};
 	    oMessage.Id = '001';
 	    oMessage.Client = this._oAppModel.getProperty("/Client");
@@ -56,10 +63,17 @@ sap.ui.define([
 		} else {
 		    this._oAppModel.setProperty("/SpecialProcess/visible", false);
 		}
+		
+		var oSelectedItem = this.getView().byId("idSpecialProcessList").getSelectedItem();
+		if(oSelectedItem){
+		    oSelectedItem.setSelected(false);
+		}
+		
 	    }.bind(this));
 	},
 	
 	loadMaterialRelatedProcess: function(){	   
+	    
 	    var oMessage = {};
 	    oMessage.Id = '002';
 	    oMessage.Client = this._oAppModel.getProperty("/Client");
@@ -73,10 +87,17 @@ sap.ui.define([
 	    this.getOwnerComponent().readMessage(oMessage).then(function(aResult){
             	if(aResult.length > 0) {
             	    if (aResult[0].ShowText){
-            		var sText = aResult[0].Values;
-            		MessageBox.show(sText, {
-            		    icon: MessageBox.Icon.INFORMATION,			
-            		    actions: [MessageBox.Action.OK]	});
+            		var sText = aResult[0].Values;      
+            		if(!this._MessageIsDisplayed){
+            		    this._MessageIsDisplayed = true;
+            		    MessageBox.show(sText, {
+                		icon: MessageBox.Icon.INFORMATION,			
+                		actions: [MessageBox.Action.OK],
+                		onClose: function (oAction) {
+                		    this._MessageIsDisplayed = false;
+                		}.bind(this)
+            		    });
+            		}
             	    }
             	}
 	    }.bind(this));
@@ -130,7 +151,7 @@ sap.ui.define([
 		this.loadSpecialProcess();
 	},
 	
-	_onDataReceived: function(oDataReceivedEvent) {
+	_onDataReceived: function(oDataReceivedEvent) {	  
 	},
 	
 	saveArticleGEOData: function() {
@@ -313,10 +334,10 @@ sap.ui.define([
 
 	onNavBack : function() {
 	    
-	    var oSelectedItem = this.getView().byId("idSpecialProcessList").getSelectedItem();
-		if(oSelectedItem){
-		    oSelectedItem.setSelected(false);
-		}
+//	    var oSelectedItem = this.getView().byId("idSpecialProcessList").getSelectedItem();
+//		if(oSelectedItem){
+//		    oSelectedItem.setSelected(false);
+//		}
 		
 		// Error State entfernen
 		var aInputs = [
@@ -344,7 +365,7 @@ sap.ui.define([
 			 }
 	    }	
 				
-		this.getOwnerComponent()._clearFormular({ full: true});
+		this.getOwnerComponent()._clearFormular({ full: true, articleView: this.getView() });
 		
 		this.getOwnerComponent()._readSUTypes(function(aSUTypes){				
 			this._oAppModel.setProperty("/SUTypes", aSUTypes);

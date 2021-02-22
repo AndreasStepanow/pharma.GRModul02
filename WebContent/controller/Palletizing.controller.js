@@ -18,25 +18,27 @@ sap.ui.define([
     		    this.getOwnerComponent().addController(this);    		    
     		    this.addPallet(true);    
     		    
-//    		    var oStorageUnitTypeComboBox = this.getView().byId("idStorageUnitTypeComboBox");
-//     		    var oTemplateItem = new sap.ui.core.Item({key: "{erp>Letyp}", text: "{erp>Letyp}"});
-//     		    var oLgnumFilter = new sap.ui.model.Filter({
-//         			path : "Lgnum",
-//         			operator : sap.ui.model.FilterOperator.EQ,
-//         			value1 : this._oAppModel.getProperty("/Lgnum")
-//         		    });
-//     		    oStorageUnitTypeComboBox.bindItems({
-//     		    	path: "/SUTypeSet",
-//     		    	model: "erp",
-//     		    	template: oTemplateItem,
-//     		    	templateShareable:true,
-//     		    	filters:[oLgnumFilter],
-//     		    	events: {
-//    					change: function(oData){debugger;}.bind(this),
-//    					dataRequested: function(oData){debugger;}.bind(this),
-//    					dataReceived: function(oData){debugger;}.bind(this),
-//    				}
-//     		    }); 
+// var oStorageUnitTypeComboBox =
+// this.getView().byId("idStorageUnitTypeComboBox");
+// var oTemplateItem = new sap.ui.core.Item({key: "{erp>Letyp}", text:
+// "{erp>Letyp}"});
+// var oLgnumFilter = new sap.ui.model.Filter({
+// path : "Lgnum",
+// operator : sap.ui.model.FilterOperator.EQ,
+// value1 : this._oAppModel.getProperty("/Lgnum")
+// });
+// oStorageUnitTypeComboBox.bindItems({
+// path: "/SUTypeSet",
+// model: "erp",
+// template: oTemplateItem,
+// templateShareable:true,
+// filters:[oLgnumFilter],
+// events: {
+// change: function(oData){debugger;}.bind(this),
+// dataRequested: function(oData){debugger;}.bind(this),
+// dataReceived: function(oData){debugger;}.bind(this),
+// }
+// });
     	    },
     
     		_onPalletizingObjectMatched: function(oObjectMatchedEvent) {
@@ -106,8 +108,9 @@ sap.ui.define([
     				this._oAppModel.setProperty("/ShowMessageForNextProcess", false);
     			} 
     			
-    			// Dieses Teil wurde bereits auskommentiert. 
-    			// Nach dem Zurückkehren von SumCheck, werden dann aber die LE-.Typen
+    			// Dieses Teil wurde bereits auskommentiert.
+    			// Nach dem Zurückkehren von SumCheck, werden dann aber
+			// die LE-.Typen
     			// nicht geladen!
     			this.getOwnerComponent()._findSUTypes({ Lgnum: oCheck.Lgnum  }).then(function(oData){
     				this._oAppModel.setProperty("/SUTypes", oData.results);
@@ -120,14 +123,14 @@ sap.ui.define([
     		
     		onSemanticObject : function(oEvent) {
     			
-//    		    this.getOwnerComponent().goToSemanticObject({
-//    		    	SemanticObject : oEvent.getSource().data("SemanticObject"),
-//    		    	Action : oEvent.getSource().data("action"),
-//    		    	Parameters : {
-//    		    		"EmployeeID" : "TEST_USER",//this._oAppModel.getProperty("/Employee/ID"),
-//    		    		"Tanum": "2750105522" //this._oAppModel.getProperty("/ArticleData/HuId")
-//    					}
-//    		    	});
+// this.getOwnerComponent().goToSemanticObject({
+// SemanticObject : oEvent.getSource().data("SemanticObject"),
+// Action : oEvent.getSource().data("action"),
+// Parameters : {
+// "EmployeeID" : "TEST_USER",//this._oAppModel.getProperty("/Employee/ID"),
+// "Tanum": "2750105522" //this._oAppModel.getProperty("/ArticleData/HuId")
+// }
+// });
     		},
 
     		
@@ -150,39 +153,38 @@ sap.ui.define([
     			 this.getView().setBusy(true);
     			 oOwner._saveDocHUs()
     		    		.then(oOwner._createTransferOrder()    		    			
-    		    			.then(function(oData) {
-    		    				this.getView().setBusy(false);
+    		    			.then(function(oData) {    		    				
     		    				var fnReprint = function(fnPrinfSuccess) {
-      		    					if (oData.TanumBruch){
-	    		    					oOwner._printTransferOrder({
+    		    				    this.getView().setBusy(true);
+    		    				    if (oData.TanumBruch){
+	    		    				oOwner._printTransferOrder({
 	        		    					Printer: this._oAppModel.getProperty("/Printer"),
 	        		    					Mandt: this._oAppModel.getProperty("/Client"),
 	        		    					Tanum: oData.TanumBruch
-	        		    				}).then(function(oData1) {   
+	        		    			}).then(function(oData1) {   
 	        		    					oOwner._printTransferOrder({
 	            		    					Printer: this._oAppModel.getProperty("/Printer"),
 	            		    					Mandt: this._oAppModel.getProperty("/Client"),
 	            		    					Tanum: oData.Tanum
-	            		    				}).then(function(oData2) {
+	            		    			}).then(function(oData2) {
 	            		    					fnPrinfSuccess(oData)
 	            		    				}.bind(this));
-	        		    				}.bind(this));   
-    		    					} else {
+	        		    			}.bind(this));   
+    		    				    } else {
     		    						oOwner._printTransferOrder({
             		    					Printer: this._oAppModel.getProperty("/Printer"),
             		    					Mandt: this._oAppModel.getProperty("/Client"),
             		    					Tanum: oData.Tanum
-            		    				}).then(function(oData2) {     
-            		    					fnPrinfSuccess(oData)
-            		    				}.bind(this));
-    		    					}    		    					
-								}.bind(this);
-													   			
-								this.getView().setBusy(true);
-								fnReprint(function(oData){								   			
-					    			this.getView().setBusy(false);
-									this.showMessageTransferOrderPrintSuccessfull(oData, fnReprint);
-								}.bind(this));
+    		    						}).then(function(oData2) {     
+    		    						    fnPrinfSuccess(oData)
+    		    						}.bind(this));
+    		    				    }    		    					
+						}.bind(this);														   			
+								
+						fnReprint(function(oData){								   			
+					    		this.getView().setBusy(false);
+							this.showMessageTransferOrderPrintSuccessfull(oData, fnReprint);
+						}.bind(this));
     		    					
     		    		}.bind(this), function(oError){
     		    			this.getView().setBusy(false);
@@ -209,7 +211,9 @@ sap.ui.define([
    	    				onClose : function(oAction) {
    	    					if(oAction === sap.m.MessageBox.Action.OK){  	
    	    						
-   	    						//TODO: Prüfen, ob FULL-relevant und Weiterleitung
+   	    						// TODO: Prüfen, ob
+							// FULL-relevant und
+							// Weiterleitung
    	    						if ( oData.FullRelevant === true){
    	    							this.goToQMCheck({ Tanum: oData.Tanum, TanumBruch: oData.TanumBruch });  
    	    						} else {
@@ -311,7 +315,7 @@ sap.ui.define([
     			    var oPallet = this._oAppModel.getProperty(oContext.getPath());
     			    if (oPallet){
     				oRow.getCells()[0].setSelectedKey(oPallet.Type);
-    				//oRow.getCells()[0].setSelectedKey(oPallet.Letyp);
+    				// oRow.getCells()[0].setSelectedKey(oPallet.Letyp);
     			    }
     			}
     		    }
@@ -359,7 +363,8 @@ sap.ui.define([
     		    	if(oPallet.HuId){
     					this.getOwnerComponent()._updateDocHU({
     						HuId: oPallet.HuId,
-    						State: "44" // Geloescht durch Operator
+    						State: "44" // Geloescht durch
+							    // Operator
     					}).then(function() {});
     	    		 }
     		    	
@@ -379,11 +384,11 @@ sap.ui.define([
 	    		
 	    		oData.ArticleData.Pallets.push(oPal);
 	    			
-//	    		if (bEnabled){    		    
-//	    			oData.ArticleData.Pallets.push(oPal);
-//	    		} else {	    			
-//	    			oData.ArticleData.Pallets.unshift(oPal);
-//	    		}
+// if (bEnabled){
+// oData.ArticleData.Pallets.push(oPal);
+// } else {
+// oData.ArticleData.Pallets.unshift(oPal);
+// }
     		  
     		    this._oAppModel.setData(oData);
     		    
@@ -441,7 +446,7 @@ sap.ui.define([
     		},
     		
     		onRowSelectionChange: function() {
-    		  //debugger;  
+    		  // debugger;
     		},
     		
     		_getRandomInt : function(max) {

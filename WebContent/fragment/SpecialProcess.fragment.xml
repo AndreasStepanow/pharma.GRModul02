@@ -20,7 +20,7 @@
 									items="{app>/ArticleData/SpecialProcess/List}"
 									selectionChange="onSpecialProcessListSelectionChange"
 									mode="SingleSelectLeft">
-									<StandardListItem title="{app>description}">
+									<StandardListItem title="{app>description}" detailPress="onPressSpecialProcessItem">
 										<customData>
 											<core:CustomData key="bwlvs"
 												value="{app>bwlvs}"></core:CustomData>

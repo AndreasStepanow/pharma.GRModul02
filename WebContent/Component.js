@@ -477,6 +477,13 @@ sap.ui.define([
     		    return new Promise(function(resolve, reject) {
     			
 	    		    var oModel = that.getModel("app");
+	    		    
+//	    		    if(oParam.articleView){
+//	    			 var oSelectedItem = oParam.articleView.byId("idSpecialProcessList").getSelectedItem();
+//	    			if(oSelectedItem){
+//	    			    oSelectedItem.setSelected(false);
+//	    			}
+//	    		    }	    		    
 	    			
 	    			oModel.setProperty("/ArticleData/Completely", false);
 	    			oModel.setProperty("/ArticleData/MaterialAvailable", false);

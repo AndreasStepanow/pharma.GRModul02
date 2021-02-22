@@ -18,13 +18,15 @@ sap.ui.define([
 	    
 	    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 	    oRouter.getRoute("RouteArticleData").attachMatched(this._onArticleDataObjectMatched, this);
+	    
+	    this._MessageIsDisplayed = false;
 
 	    this.getView().onAfterRendering = function() {
 
 		var oArtikeNummer = this.getView().byId("idArticleNumber");
 		oArtikeNummer.addEventDelegate({
 		    onfocusout : function() {
-		    	this.loadArticledata();		
+		    	this.loadArticledata();	
 		    	
 		    }.bind(this)
 		});
@@ -38,6 +40,10 @@ sap.ui.define([
 
 	    }.bind(this);
 
+	},
+	
+	onPressSpecialProcessItem: function(oSpecialProcessItemEvent) {
+	    debugger;
 	},
 	
 	onExpandSpecialProcessDisplay: function(oExpantEvent) {	    
@@ -73,10 +79,17 @@ sap.ui.define([
 	    this.getOwnerComponent().readMessage(oMessage).then(function(aResult){
             	if(aResult.length > 0) {
             	    if (aResult[0].ShowText){
-            		var sText = aResult[0].Values;
-            		MessageBox.show(sText, {
-            		    icon: MessageBox.Icon.INFORMATION,			
-            		    actions: [MessageBox.Action.OK]	});
+            		var sText = aResult[0].Values;      
+            		if(!this._MessageIsDisplayed){
+            		    this._MessageIsDisplayed = true;
+            		    MessageBox.show(sText, {
+                		icon: MessageBox.Icon.INFORMATION,			
+                		actions: [MessageBox.Action.OK],
+                		onClose: function (oAction) {
+                		    this._MessageIsDisplayed = false;
+                		}.bind(this)
+            		    });
+            		}
             	    }
             	}
 	    }.bind(this));
